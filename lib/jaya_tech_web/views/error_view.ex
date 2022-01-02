@@ -13,4 +13,8 @@ defmodule JayaTechWeb.ErrorView do
   def template_not_found(template, _assigns) do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
+
+  def render("bad_request.json", %{message: message, status: status}) do
+    %{errors: %{details: message, status: status}}
+  end
 end

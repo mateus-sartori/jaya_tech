@@ -7,5 +7,7 @@ defmodule JayaTechWeb.Router do
 
   scope "/api", JayaTechWeb do
     pipe_through :api
+
+    resources "/transactions", TransactionController, except: [:new, :edit]
   end
 end

@@ -6,4 +6,14 @@ defmodule JayaTech.Accounts do
 
   @spec get_user!(integer()) :: %User{}
   def get_user!(id), do: Repo.get!(User, id)
+
+  def get_random() do
+    query =
+      from u in User,
+        order_by: fragment("RANDOM()"),
+        limit: 1,
+        select: u.id
+
+    Repo.one!(query)
+  end
 end
