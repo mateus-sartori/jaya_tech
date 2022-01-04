@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "zerokol.vscode-eex-beautify",
+    "iampeterbanjo.elixirlinter",
+    "jakebecker.elixir-ls"
+  ],
+  "unwantedRecommendations": [
+    "mjmcloug.vscode-elixir"
+  ]
+}

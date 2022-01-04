@@ -1,0 +1,17 @@
+{
+  "[elixir]": {
+    "editor.defaultFormatter": "JakeBecker.elixir-ls"
+  },
+  "editor.renderFinalNewline": true,
+  "editor.renderWhitespace": "none",
+  "editor.tabSize": 2,
+  "emmet.includeLanguages": {
+    "html-eex": "html"
+  },
+  "files.associations": {
+    "*.eex": "html-eex"
+  },
+  "files.eol": "\n",
+  "vscode-eex-beautify.keepBlankLines": 1,
+  "vscode-eex-beautify.tabStops": 2
+}
