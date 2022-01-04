@@ -14,6 +14,13 @@ defmodule JayaTech.Transactions do
     Repo.all(Transaction)
   end
 
+  @spec list_by_user(number) :: any
+  def list_by_user(user_id) do
+    Transaction
+    |> where(user_id: ^user_id)
+    |> Repo.all()
+  end
+
   def create_transaction(attrs \\ %{}) do
     %Transaction{}
     |> Transaction.changeset(attrs)
