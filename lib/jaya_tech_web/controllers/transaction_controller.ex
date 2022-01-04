@@ -13,10 +13,7 @@ defmodule JayaTechWeb.TransactionController do
 
   def index_by_user(conn, %{"user_id" => user_id}) do
     transactions = Transactions.list_by_user(user_id)
-
-    conn
-    |> put_status(:ok)
-    |> render("index.json", transactions: transactions)
+    render(conn, "index.json", transactions: transactions)
   end
 
   def create(conn, %{"transaction" => transaction_params}) do
