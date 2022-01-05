@@ -16,4 +16,10 @@ defmodule JayaTech.Accounts do
 
     Repo.one!(query)
   end
+
+  def create_user(attrs \\ %{}) do
+    %User{}
+    |> User.changeset(attrs)
+    |> Repo.insert()
+  end
 end

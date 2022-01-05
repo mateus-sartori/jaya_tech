@@ -10,6 +10,12 @@ defmodule JayaTech.Transactions do
 
   alias JayaTech.Transactions.Transaction
 
+  def get_transaction!(id) do
+    Transaction
+    |> preload(:user)
+    |> Repo.get!(id)
+  end
+
   def list_transactions do
     Repo.all(Transaction)
   end
@@ -41,8 +47,8 @@ defmodule JayaTech.Transactions do
           | {:error, list(status: binary, body: map)}
   def convert_currency(origin_currency, destination_currency, origin_value) do
     with {:ok, response} <- Requests.get_currency_rates() do
-      origin_currency = String.upcase(origin_currency)
-      destination_currency = String.upcase(destination_currency)
+      origin_currency = if origin_currency, do: String.upcase(origin_currency)
+      destination_currency = if origin_currency, do: String.upcase(destination_currency)
       rates = response.body["rates"]
 
       rates =

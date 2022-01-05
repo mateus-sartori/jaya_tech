@@ -9,6 +9,6 @@ defmodule JayaTechWeb.Router do
     pipe_through :api
 
     resources "/transactions", TransactionController, except: [:new, :edit]
-    get "list-transactions", TransactionController, :index_by_user
+    get "/list-transactions", TransactionController, :index_by_user
   end
 end

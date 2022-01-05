@@ -4,6 +4,7 @@ defmodule JayaTech.Transactions.Transaction do
 
   alias JayaTech.Accounts.User
 
+  @derive {Jason.Encoder, except: ~w(__meta__ __struct__ user)a}
   schema "transactions" do
     field :origin_currency, :string
     field :origin_value, :decimal

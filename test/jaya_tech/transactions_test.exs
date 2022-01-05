@@ -2,63 +2,44 @@ defmodule JayaTech.TransactionsTest do
   use JayaTech.DataCase
 
   alias JayaTech.Transactions
+  import JayaTech.Factory
 
   describe "transactions" do
     alias JayaTech.Transactions.Transaction
 
     import JayaTech.TransactionsFixtures
+    import JayaTech.AccountsFixtures
 
-    @invalid_attrs %{origin_currency: nil}
+    @invalid_attrs %{}
 
     test "list_transactions/0 returns all transactions" do
       transaction = transaction_fixture()
       assert Transactions.list_transactions() == [transaction]
     end
 
-    test "get_transaction!/1 returns the transaction with given id" do
-      transaction = transaction_fixture()
-      assert Transactions.get_transaction!(transaction.id) == transaction
+    test "list_transactions_by_user/0 returns all transactions by user" do
+      user = user_fixture()
+      transaction = transaction_fixture(user_id: user.id)
+      assert Transactions.list_by_user(user.id) == [transaction]
     end
 
     test "create_transaction/1 with valid data creates a transaction" do
-      valid_attrs = %{origin_currency: "some origin_currency"}
+      user = user_fixture()
+      transaction = %{
+        conversion_rate_used: "USD 1.131548 and BRL 6.445294",
+        date_time_utc: DateTime.utc_now(),
+        destination_currency: "BRL",
+        destination_value: 14240.00,
+        origin_currency: "USD",
+        origin_value: 2500.00,
+        user_id: user.id
+      }
 
-      assert {:ok, %Transaction{} = transaction} = Transactions.create_transaction(valid_attrs)
-      assert transaction.origin_currency == "some origin_currency"
+      assert {:ok, %Transaction{}} = Transactions.create_transaction(transaction)
     end
 
     test "create_transaction/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Transactions.create_transaction(@invalid_attrs)
-    end
-
-    test "update_transaction/2 with valid data updates the transaction" do
-      transaction = transaction_fixture()
-      update_attrs = %{origin_currency: "some updated origin_currency"}
-
-      assert {:ok, %Transaction{} = transaction} =
-               Transactions.update_transaction(transaction, update_attrs)
-
-      assert transaction.origin_currency == "some updated origin_currency"
-    end
-
-    test "update_transaction/2 with invalid data returns error changeset" do
-      transaction = transaction_fixture()
-
-      assert {:error, %Ecto.Changeset{}} =
-               Transactions.update_transaction(transaction, @invalid_attrs)
-
-      assert transaction == Transactions.get_transaction!(transaction.id)
-    end
-
-    test "delete_transaction/1 deletes the transaction" do
-      transaction = transaction_fixture()
-      assert {:ok, %Transaction{}} = Transactions.delete_transaction(transaction)
-      assert_raise Ecto.NoResultsError, fn -> Transactions.get_transaction!(transaction.id) end
-    end
-
-    test "change_transaction/1 returns a transaction changeset" do
-      transaction = transaction_fixture()
-      assert %Ecto.Changeset{} = Transactions.change_transaction(transaction)
     end
   end
 end

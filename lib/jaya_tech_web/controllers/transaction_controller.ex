@@ -37,4 +37,9 @@ defmodule JayaTechWeb.TransactionController do
         {:error_external_api, %{message: response[:body], status: response[:status]}}
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    transaction = Transactions.get_transaction!(id)
+    render(conn, "show.json", transaction: transaction)
+  end
 end
