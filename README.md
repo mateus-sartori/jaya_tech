@@ -38,7 +38,6 @@ mix deps.get
 # Por ser um projeto em Phoenix é necessário também inicializar o banco de dados em ambiente dev
 mix ecto.create && mix ecto.migrate
 
-# Por ser um projeto em Phoenix é necessário também inicializar o banco de dados em ambiente dev
 Após isso, é necessário cadastrar os usuários ficticios para as transações
 
 Rodar o comando mix ecto.migrate rodar "mix run priv/repo/seeds.exs"
