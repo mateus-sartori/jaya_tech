@@ -7,6 +7,6 @@ defmodule JayaTech.Requests do
 
   @spec get_currency_rates() :: Tesla.Env.result()
   def get_currency_rates() do
-    get("/latest", query: [access_key: "1692589819a6dffba85fd137e5132cecs", base: "EUR"])
+    get("/latest", query: [access_key: "1692589819a6dffba85fd137e5132cec", base: "EUR"])
   end
 end
