@@ -49,7 +49,7 @@ Rodar o comando mix ecto.migrate rodar "mix run priv/repo/seeds.exs"
 ```bash
 É necessário realizar um start no servidor "iex -S mix"
 
-Após isso, endpoints de transações estrará disponível
+Após isso, endpoints de transações estará disponível
 
 EX: POST "localhost:4000/api/transactions" && GET "localhost:4000/api/list-transactions"
 
